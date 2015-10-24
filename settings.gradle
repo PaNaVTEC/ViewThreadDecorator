@@ -1,2 +1,3 @@
 include 'threaddecoratedview-common'
 include 'threaddecoratedview-compiler'
+include 'sample'

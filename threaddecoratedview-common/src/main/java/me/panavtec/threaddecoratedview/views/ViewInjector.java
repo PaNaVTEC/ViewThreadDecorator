@@ -33,6 +33,9 @@ public class ViewInjector {
         return viewInterface;
       }
     }
+    if (implementedViewClass.getSuperclass() != null) {
+      return findThreadDecoratedView(implementedViewClass.getSuperclass());
+    }
     throw new RuntimeException(
         "Cannot find any View annotated with @" + ThreadDecoratedView.class.getName());
   }
