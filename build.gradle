@@ -1,0 +1,26 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.1.0'
+  }
+}
+
+def isReleaseBuild() {
+  return version.contains("SNAPSHOT") == false
+}
+
+allprojects {
+
+  ext {
+    // Libraries
+    libMockito = 'org.mockito:mockito-all:2.0.2-beta'
+    libJavaPoet = 'com.squareup:javapoet:1.0.0'
+  }
+
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+}
