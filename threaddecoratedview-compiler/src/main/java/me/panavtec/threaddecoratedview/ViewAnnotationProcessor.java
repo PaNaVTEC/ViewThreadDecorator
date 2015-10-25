@@ -17,7 +17,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import me.panavtec.threaddecoratedview.model.EnclosingView;
 import me.panavtec.threaddecoratedview.model.ViewMethod;
-import me.panavtec.threaddecoratedview.views.qualifiers.NoDecorate;
+import me.panavtec.threaddecoratedview.views.qualifiers.NotDecorated;
 import me.panavtec.threaddecoratedview.views.qualifiers.ThreadDecoratedView;
 import me.panavtec.threaddecoratedview.writer.ViewWriter;
 
@@ -79,7 +79,7 @@ public class ViewAnnotationProcessor extends AbstractProcessor {
       ViewMethod viewMethod = new ViewMethod();
       viewMethod.setMethodName(elementTools.getFieldName(e));
       viewMethod.setReturnType(((ExecutableElement) e).getReturnType());
-      viewMethod.setDecorate(e.getAnnotation(NoDecorate.class) == null);
+      viewMethod.setDecorate(e.getAnnotation(NotDecorated.class) == null);
       List<? extends VariableElement> parameters = ((ExecutableElement) e).getParameters();
       for (VariableElement parameterElement : parameters) {
         viewMethod.getParameters().add(parameterElement.asType());
@@ -91,7 +91,7 @@ public class ViewAnnotationProcessor extends AbstractProcessor {
   @Override public Set<String> getSupportedAnnotationTypes() {
     Set<String> supportTypes = new LinkedHashSet<>();
     supportTypes.add(ThreadDecoratedView.class.getCanonicalName());
-    supportTypes.add(NoDecorate.class.getCanonicalName());
+    supportTypes.add(NotDecorated.class.getCanonicalName());
     return supportTypes;
   }
 }

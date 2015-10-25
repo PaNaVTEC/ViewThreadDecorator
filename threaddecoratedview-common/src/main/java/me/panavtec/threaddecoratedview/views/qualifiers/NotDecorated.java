@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
  * For example the init Ui methods that are you sure are in the same thread.
  */
 @Target(ElementType.METHOD) @Retention(RetentionPolicy.SOURCE)
-public @interface NoDecorate {
+public @interface NotDecorated {
 }
