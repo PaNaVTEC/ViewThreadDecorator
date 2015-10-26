@@ -7,8 +7,8 @@ Add this dependency to your build.gradle file:
 
 ```java
 dependencies {
-    compile 'me.panavtec:viewthreaddecorator-common:1.1.1'
-    apt/provided 'me.panavtec:viewthreaddecorator-compiler:1.1.1'
+    compile 'me.panavtec:threaddecoratedview-common:1.1.1'
+    apt/provided 'me.panavtec:threaddecoratedview-compiler:1.1.1'
 }
 ```
 ## Basic usage
