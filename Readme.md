@@ -1,6 +1,6 @@
 # ViewThreadDecorator
 
-This project attemts to make a common way to decorate a View interface from your MV* implementation to avoid suffer about threading problems. It's just a code generator that decorates an interface in order to post results in the Ui Thread, but you can use it in other ways. Here is a full explantion:
+This project attempts to make a common way to decorate a View interface from your MV* implementation to avoid suffer about threading problems. It's just a code generator that decorates an interface in order to post results in the Ui Thread, but you can use it in other ways. Here is a full explanation:
 
 Further information: http://panavtec.me/say-goodbye-to-all-main-thread-problems-in-mvp/
 
@@ -9,8 +9,8 @@ Add this dependency to your build.gradle file:
 
 ```java
 dependencies {
-    compile 'me.panavtec:threaddecoratedview-common:1.1.1'
-    apt/provided 'me.panavtec:threaddecoratedview-compiler:1.1.1'
+    compile 'me.panavtec:threaddecoratedview-common:1.5'
+    apt/provided 'me.panavtec:threaddecoratedview-compiler:1.5'
 }
 ```
 ## Basic usage
@@ -40,4 +40,9 @@ If you need some methods of your interface to run without the decorator, just an
   @NotDecorated void initUi();
   void refreshAList();
 }
+```
+When you need to detach the view from the presenter, you can set your view to null if you handle nulls or
+you can use an included NullObjectPattern (an implemented view with empty methods) in this way:
+```java
+this.mainView = this.mainView = ViewInjector.nullObjectPatternView(mainView);
 ```
