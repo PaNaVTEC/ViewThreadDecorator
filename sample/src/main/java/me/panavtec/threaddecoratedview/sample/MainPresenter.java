@@ -10,7 +10,7 @@ public class MainPresenter {
   public MainPresenter() {
   }
 
-  public void attachiew(MainView mainView) {
+  public void attachView(MainView mainView) {
     this.mainView = ViewInjector.inject(mainView, new ThreadSpec() {
       @Override public void execute(Runnable action) {
         System.out.println("Decorated mainView");
@@ -21,5 +21,9 @@ public class MainPresenter {
 
   public void doSomeViewAction() {
     mainView.sampleUiMethod();
+  }
+
+  public void detachView() {
+    this.mainView = ViewInjector.nullObjectPatternView(mainView);
   }
 }

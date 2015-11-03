@@ -19,6 +19,8 @@ import me.panavtec.threaddecoratedview.model.EnclosingView;
 import me.panavtec.threaddecoratedview.model.ViewMethod;
 import me.panavtec.threaddecoratedview.views.qualifiers.NotDecorated;
 import me.panavtec.threaddecoratedview.views.qualifiers.ThreadDecoratedView;
+import me.panavtec.threaddecoratedview.writer.DecoratedViewStrategy;
+import me.panavtec.threaddecoratedview.writer.EmptyViewStrategy;
 import me.panavtec.threaddecoratedview.writer.ViewWriter;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
@@ -26,11 +28,12 @@ public class ViewAnnotationProcessor extends AbstractProcessor {
 
   private boolean firstProcessing;
   private ElementTools elementTools = new ElementTools();
-  private ViewWriter writer = new ViewWriter();
+  private ViewWriter writer;
 
   @Override public synchronized void init(ProcessingEnvironment processingEnv) {
     super.init(processingEnv);
     firstProcessing = true;
+    writer = new ViewWriter(new EmptyViewStrategy(), new DecoratedViewStrategy());
   }
 
   @Override public boolean process(Set<? extends TypeElement> annotations,
