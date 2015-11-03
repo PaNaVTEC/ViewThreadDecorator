@@ -2,6 +2,8 @@
 
 This project attemts to make a common way to decorate a View interface from your MV* implementation to avoid suffer about threading problems. It's just a code generator that decorates an interface in order to post results in the Ui Thread, but you can use it in other ways. Here is a full explantion:
 
+Further information: http://panavtec.me/say-goodbye-to-all-main-thread-problems-in-mvp/
+
 ## Importing to your project
 Add this dependency to your build.gradle file:
 
