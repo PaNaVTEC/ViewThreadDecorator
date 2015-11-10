@@ -23,8 +23,8 @@ import me.panavtec.threaddecoratedview.writer.DecoratedViewStrategy;
 import me.panavtec.threaddecoratedview.writer.EmptyViewStrategy;
 import me.panavtec.threaddecoratedview.writer.ViewWriter;
 
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
-public class ViewAnnotationProcessor extends AbstractProcessor {
+@SupportedSourceVersion(SourceVersion.RELEASE_7) public class ViewAnnotationProcessor
+    extends AbstractProcessor {
 
   private boolean firstProcessing;
   private ElementTools elementTools = new ElementTools();
@@ -36,8 +36,8 @@ public class ViewAnnotationProcessor extends AbstractProcessor {
     writer = new ViewWriter(new EmptyViewStrategy(), new DecoratedViewStrategy());
   }
 
-  @Override public boolean process(Set<? extends TypeElement> annotations,
-      RoundEnvironment roundEnv) {
+  @Override
+  public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
     System.out.println("#######################");
     System.out.println("Starting View Processor");
     System.out.println("#######################");
@@ -78,16 +78,18 @@ public class ViewAnnotationProcessor extends AbstractProcessor {
   private void processMethodsOfView(EnclosingView enclosingView, Element view) {
     List<? extends Element> enclosedElements = view.getEnclosedElements();
     for (Element e : enclosedElements) {
-      System.out.println("Method process: " + e.toString());
-      ViewMethod viewMethod = new ViewMethod();
-      viewMethod.setMethodName(elementTools.getFieldName(e));
-      viewMethod.setReturnType(((ExecutableElement) e).getReturnType());
-      viewMethod.setDecorate(e.getAnnotation(NotDecorated.class) == null);
-      List<? extends VariableElement> parameters = ((ExecutableElement) e).getParameters();
-      for (VariableElement parameterElement : parameters) {
-        viewMethod.getParameters().add(parameterElement.asType());
+      if (elementTools.isMethod(e)) {
+        System.out.println("Method process: " + e.toString());
+        ViewMethod viewMethod = new ViewMethod();
+        viewMethod.setMethodName(elementTools.getFieldName(e));
+        viewMethod.setReturnType(((ExecutableElement) e).getReturnType());
+        viewMethod.setDecorate(e.getAnnotation(NotDecorated.class) == null);
+        List<? extends VariableElement> parameters = ((ExecutableElement) e).getParameters();
+        for (VariableElement parameterElement : parameters) {
+          viewMethod.getParameters().add(parameterElement.asType());
+        }
+        enclosingView.getMethods().add(viewMethod);
       }
-      enclosingView.getMethods().add(viewMethod);
     }
   }
 

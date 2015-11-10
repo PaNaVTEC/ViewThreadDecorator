@@ -2,6 +2,7 @@ package me.panavtec.threaddecoratedview;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.ExecutableElement;
 
 public class ElementTools {
 
@@ -18,5 +19,9 @@ public class ElementTools {
   public String getElementPackagename(Element e) {
     String className = e.toString();
     return className.substring(0, className.lastIndexOf('.'));
+  }
+
+  public boolean isMethod(Element e) {
+    return e instanceof ExecutableElement;
   }
 }
