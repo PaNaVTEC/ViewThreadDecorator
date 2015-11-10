@@ -9,8 +9,8 @@ Add this dependency to your build.gradle file:
 
 ```java
 dependencies {
-    compile 'me.panavtec:threaddecoratedview-common:1.5'
-    apt/provided 'me.panavtec:threaddecoratedview-compiler:1.5'
+    compile 'me.panavtec:threaddecoratedview-common:1.5.1'
+    apt/provided 'me.panavtec:threaddecoratedview-compiler:1.5.1'
 }
 ```
 ## Basic usage
