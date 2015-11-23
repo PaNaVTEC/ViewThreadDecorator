@@ -44,5 +44,5 @@ If you need some methods of your interface to run without the decorator, just an
 When you need to detach the view from the presenter, you can set your view to null if you handle nulls or
 you can use an included NullObjectPattern (an implemented view with empty methods) in this way:
 ```java
-this.mainView = this.mainView = ViewInjector.nullObjectPatternView(mainView);
+this.mainView = ViewInjector.nullObjectPatternView(mainView);
 ```
