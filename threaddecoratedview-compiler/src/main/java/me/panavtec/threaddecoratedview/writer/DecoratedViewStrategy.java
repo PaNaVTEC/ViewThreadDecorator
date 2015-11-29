@@ -84,10 +84,7 @@ public class DecoratedViewStrategy implements ViewWriterStrategy {
     TypeSpec.Builder classBuilder = TypeSpec.classBuilder(CLASS_PREFIX + view.getClassName())
         .addModifiers(Modifier.PUBLIC)
         .addSuperinterface(viewType)
-        .addAnnotation(AnnotationSpec.builder(DoNotStrip.class).build())
-        .addAnnotation(AnnotationSpec.builder(Generated.class)
-            .addMember("value", "$S", ViewAnnotationProcessor.class.getCanonicalName())
-            .build());
+        .addAnnotation(AnnotationSpec.builder(DoNotStrip.class).build());
     addDecoratedViewConsutrctor(classBuilder, viewType);
     addDecoratedViewFields(classBuilder, viewType);
     addDecoratedViewMethods(viewMethods, classBuilder);
