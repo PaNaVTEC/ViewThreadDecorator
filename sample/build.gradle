@@ -11,6 +11,6 @@ repositories {
 
 dependencies {
     compile project(':threaddecoratedview-common')
-    compile project(':threaddecoratedview-compiler')
+    apt project(':threaddecoratedview-compiler')
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

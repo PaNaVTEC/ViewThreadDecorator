@@ -67,12 +67,20 @@ import me.panavtec.threaddecoratedview.writer.ViewWriter;
     System.out.println("Processing: " + elementView.toString());
     processMethodsOfView(enclosingView, elementView);
 
-    List<? extends TypeMirror> extendsViewInterfaces = ((TypeElement) elementView).getInterfaces();
-    for (TypeMirror mirror : extendsViewInterfaces) {
-      processMethodsOfView(enclosingView, processingEnv.getTypeUtils().asElement(mirror));
-    }
+    processSuperElementsOfView((TypeElement) elementView, enclosingView);
 
     return enclosingView;
+  }
+
+  private void processSuperElementsOfView(TypeElement elementView, EnclosingView enclosingView) {
+    List<? extends TypeMirror> extendsViewInterfaces = elementView.getInterfaces();
+    for (TypeMirror mirror : extendsViewInterfaces) {
+      Element mirrorElement = processingEnv.getTypeUtils().asElement(mirror);
+      if (mirrorElement instanceof TypeElement) {
+        processSuperElementsOfView((TypeElement) mirrorElement, enclosingView);
+      }
+      processMethodsOfView(enclosingView, mirrorElement);
+    }
   }
 
   private void processMethodsOfView(EnclosingView enclosingView, Element view) {
