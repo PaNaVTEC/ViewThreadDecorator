@@ -38,12 +38,12 @@ import me.panavtec.threaddecoratedview.writer.ViewWriter;
 
   @Override
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-    System.out.println("#######################");
-    System.out.println("Starting View Processor");
-    System.out.println("#######################");
     if (!firstProcessing) {
       return false;
     }
+    System.out.println("#######################");
+    System.out.println("Generating thread decorated views");
+    System.out.println("#######################");
     firstProcessing = false;
     Collection<EnclosingView> enclosingOutputs = processAnnotations(roundEnv);
     writer.write(enclosingOutputs, processingEnv.getFiler());
@@ -64,7 +64,6 @@ import me.panavtec.threaddecoratedview.writer.ViewWriter;
     enclosingView.setClassName(elementTools.getElementClassName(elementView));
     enclosingView.setPackageName(elementTools.getElementPackagename(elementView));
 
-    System.out.println("Processing: " + elementView.toString());
     processMethodsOfView(enclosingView, elementView);
 
     List<? extends TypeMirror> extendsViewInterfaces = ((TypeElement) elementView).getInterfaces();
@@ -79,7 +78,6 @@ import me.panavtec.threaddecoratedview.writer.ViewWriter;
     List<? extends Element> enclosedElements = view.getEnclosedElements();
     for (Element e : enclosedElements) {
       if (elementTools.isMethod(e)) {
-        System.out.println("Method process: " + e.toString());
         ViewMethod viewMethod = new ViewMethod();
         viewMethod.setMethodName(elementTools.getFieldName(e));
         viewMethod.setReturnType(((ExecutableElement) e).getReturnType());
