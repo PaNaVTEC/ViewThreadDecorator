@@ -41,9 +41,9 @@ import me.panavtec.threaddecoratedview.writer.ViewWriter;
     if (!firstProcessing) {
       return false;
     }
-    System.out.println("#######################");
+    System.out.println("#################################");
     System.out.println("Generating thread decorated views");
-    System.out.println("#######################");
+    System.out.println("#################################");
     firstProcessing = false;
     Collection<EnclosingView> enclosingOutputs = processAnnotations(roundEnv);
     writer.write(enclosingOutputs, processingEnv.getFiler());
